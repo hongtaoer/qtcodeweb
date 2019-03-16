@@ -1,0 +1,91 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body, html {
+    height: 100%;
+}
+
+.container {
+    margin: 0 auto;
+    width: 70%;
+}
+
+.container .form-main {
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+.form-main .form-item {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.form-item input {
+    width: 300px;
+    height: 36px;
+    line-height: 36px;
+    box-sizing: border-box;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 6px;
+    outline: none;
+    border: 1px solid #ccc;
+}
+
+.form-item .inp3, .form-item .inp4{
+    width: 60px;
+}
+
+.form-item .inp5 {
+    width: 60px;
+}
+
+
+.form-item label {
+    display: inline-block;
+    text-align: left;
+}
+
+.form-item button {
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+    display: inline-block;
+    padding-left: 8px;
+    padding-right: 8px;
+    background: #fff;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/*.errorItem{
+  border:1px solid #f00;
+  color:#f00;
+}*/
+.errorItem label {
+    color: #f00;
+}
+
+.errorItem input {
+    border: 1px solid #f00;
+    color: #f00;
+}
+
+.errorItem input::-webkit-input-placeholder { /* WebKit browsers */
+    color: #f00;
+}
+
+.errorItem input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #f00;
+}
+
+.errorItem::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #f00;
+}
+
+.errorItem input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #f00;
+}

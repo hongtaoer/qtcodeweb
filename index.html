@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+<div class="container">
+    <form class="form-main">
+
+        <div class="form-item">
+            <label>鉴证对象名称:</label>
+            <input type="text" placeholder="" name="oneInp" class="inp1 aInp">
+        </div>
+
+        <div class="form-item">
+            <label>委托项目类型:</label>
+            <input type="text" placeholder="" name="oneInp" class="inp6 aInp">
+        </div>
+
+        <div class="form-item">
+            <h4>请填写二维码下方第一行显示的字符串:</h4>
+            <label>防伪号:</label>
+            <input type="text"  placeholder="" name="oneInp" class="inp2 aInp">
+        </div>
+
+
+        <div class="form-item">
+            <h4>请填写二维码下方第二行显示的字符串:</h4>
+            <label>报告文号:皖天桓</label>
+            <input type="text" placeholder="" name="fiveInp" class="inp5 aInp">
+            审字(
+            <input type="text" placeholder="" name="threeInp" class="inp3 aInp">
+            )第
+            <input type="text" placeholder="" name="fourInp" class="inp4 aInp">号
+        </div>
+
+
+        <div class="form-item">
+            <button id="getCodeBtn">生成二维码</button>
+        </div>
+
+    </form>
+</div>
+<div id="code"></div>
+<script src="./plugins/jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $('#getCodeBtn').click(function (event) {
+        event.preventDefault();
+
+        var oInp = $('.form-item .aInp');
+        var breakpiont = true;
+        oInp.each(function (index, el) {
+            var val = $.trim($(el).val());
+            if (!val) {
+                $(el).parent().addClass('errorItem').children('input').attr('placeholder', '请输入要生成的内容');
+                breakpiont = false;
+            }
+        });
+        if (!breakpiont) {
+            return;
+        }
+        var text1 = $('.inp1').val();
+        var text2 = $('.inp2').val();
+        var text3 = $('.inp3').val();
+        var text4 = $('.inp4').val();
+        var text5 = $('.inp5').val();
+        var text6 = $('.inp6').val();
+
+        var _params = {
+            name: text1,
+            checkNumber: text2,
+            year: text3,
+            number: text4,
+            character: text5,
+            projectType: text6
+
+        };
+
+        $.ajax({
+            url: 'http://121.43.160.192:8090/pdf/add',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            type: 'POST',
+            dataType: 'JSON',
+            data: JSON.stringify(_params)
+        })
+            .done(function (res) {
+                console.log(res);
+                text2 = encodeURI($('.inp2').val());
+                text3 = encodeURI($('.inp3').val());
+                text4 = encodeURI($('.inp4').val());
+                text5 = encodeURI($('.inp5').val());
+                window.location.href = './page/qrcode.html?codeContentOne=' + text2 + '&codeContentTwo=' + text3 + '&codeContentThr=' + text4 + '&codeContentFor=' + text5;
+            })
+
+    });
+
+    $('.form-item input').focus(function (event) {
+        $(this).parent().removeClass('errorItem').children('input').attr('placeholder', '');
+    });
+</script>
+</body>
+
+</html>

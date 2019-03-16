@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="../plugins/jquery.min.js" charset="utf-8"></script>
+    <script src="../plugins/clipboard.min.js" charset="utf-8"></script>
+    <meta charset="utf-8">
+    <title></title>
+
+</head>
+
+<body>
+<div class="container">
+    <div id="plaintext" hidden="true">
+        18602108194
+    </div>
+
+    <div id="ciphertext" oncopy="myFunction(event)">
+        186****8194
+    </div>
+</div>
+</body>
+<script type="text/javascript" language="JavaScript">
+     function myFunction(event) {
+        var data = $('#plaintext').text()
+         clipboardData = event.clipboardData || window.clipboardData || event.originalEvent.clipboardData;
+         clipboardData.setData("text/plain",data);
+        alert(data);
+        alert(clipboardData.getData("text/plain"))
+    }
+
+</script>
+</html>
